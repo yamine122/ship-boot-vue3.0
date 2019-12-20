@@ -42,6 +42,7 @@ export default {
                 'authorization': 'JWT fefege..',
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
+                
             }
             axios
             .post(url, data, headers)
