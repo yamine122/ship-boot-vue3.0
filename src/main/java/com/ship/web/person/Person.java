@@ -10,7 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
+@Component
 @Data
 @Entity
 @Table(name="PERSON")
@@ -26,8 +29,18 @@ public class Person {
 	@Column(name="NAME", length=64, nullable=false)
 	private String name;
 	@Temporal(TemporalType.DATE)
-	@Column(name="BIRTHDAY", nullable=false)
+	@Column(name="BIRTHDAY")
 	private Date birthday;
+	@Column(name="GENDER")
+	private String gender;
+	@Column(name="HAK")
+	private String hak;
+	@Column(name="BAN")
+	private String ban;
+	@Column(name="SCORE")
+	private String score;
+
+	
 	
 	
 }

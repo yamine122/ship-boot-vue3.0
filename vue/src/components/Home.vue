@@ -3,9 +3,7 @@
 		<layout>
 			<template #header="header">
 				<h1>{{header.title}}
-				<button id="btn" v-for="j of members" :key="j.button">
-				<router-link :to="j.link">{{j.button}}</router-link>
-				</button>
+				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
 				</h1>
 			</template>
 			<template #sidebar="sidebar">
@@ -25,9 +23,12 @@
 </template>
 <script>
 import Layout from "@/components/cmm/Layout.vue"
+import PostAuth from "@/components/cmm/PostAuth.vue"
+import PreAuth from "@/components/cmm/PreAuth.vue"
+import {store} from "@/store"
 export default {
 	components :{
-		Layout
+		Layout,PostAuth,PreAuth
 	},
 	data(){
 		return {
@@ -36,12 +37,15 @@ export default {
 				{menu:"목록",link:"/listview"},
 				{menu:"글수정",link:"/update"},
 				{menu:"글삭제",link:"/remove"},
-				{menu:"검색",link:"/search"}
-			],
-			members :[
-				{button: "로그인", link:"/login"},
-				{button: "회원가입", link:"/join"}
+				{menu:"검색",link:"/search"},
+				{menu:"마이페이지",link:"/mypage"}
+
 			]
+		}
+	},
+	computed:{
+		loginCheck: function(){
+			return store.state.authCheck
 		}
 	}
 }

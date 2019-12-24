@@ -3,14 +3,18 @@ package com.ship.web.person;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import com.ship.web.proxy.Proxy;
+
 @Component
-public class PersonInit implements ApplicationRunner{
+public class PersonInit extends Proxy implements ApplicationRunner {
 	private PersonRepository personRepositoy;
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	
 	
 	public PersonInit(PersonRepository personRepositoy) {
 		this.personRepositoy = personRepositoy;
@@ -21,22 +25,44 @@ public class PersonInit implements ApplicationRunner{
 		if(count == 0) {
 			Person person = null;
 			String[][] mtx= {
-				{"hong","1","홍길동","1980-01-01"},
-				{"kim","1","김유신","1980-05-05"},
-				{"park","1","박지성","1981-06-05"},
-				{"you","1","유관선","1985-09-09"}
-				};
+					{ "hong", "1", "홍길동",  "1980-01-01", "M", "1" ,"2","65" },
+	                  { "kim", "1", "김유신",  "1980-05-05", "M", "1" ,"1","23" },
+	                  { "park", "1", "박지성",  "1981-06-05", "M", "2" ,"3","95" },
+	                  { "you", "1", "유관순",  "1985-09-09", "F", "3" ,"2","96" },
+	                  { "park", "1", "박지성",  "1981-06-05", "M", "1" ,"2","50" },
+	                  { "na", "1", "나도욱",  "1993-06-05", "M", "2" ,"3","35" },
+	                  { "mo", "1", "모모",  "1994-06-05", "F", "3" ,"4","87" },
+	                  { "sa", "1", "사나",  "1992-06-05", "F", "2" ,"1","42" },
+	                  { "ji", "1", "지효",  "1992-06-05", "F", "1" ,"2","98" },
+	                  { "da", "1", "다현",  "1994-06-05", "F", "3" ,"4","75" },
+	                  { "jj", "1", "쯔위",  "1996-06-05", "F", "2" ,"3","67" },
+	                  { "cy", "1", "채영",  "1999-06-05", "F", "1" ,"2","45" },
+	                  { "na", "1", "나연",  "1995-06-05", "F", "2" ,"1","82" },
+	                  { "jung", "1", "정연",  "1995-06-05", "F", "3" ,"3","68" },
+	                  { "mi", "1", "미나",  "1992-06-05", "F", "2" ,"2","47" },
+	                  { "im", "1", "임꺽정",  "1992-06-05", "M", "1" ,"4","52" },
+	                  { "iu", "1", "아이유",  "1994-06-05", "F", "2" ,"4","96" },
+	                  { "you", "1", "유재석",  "1998-06-05", "M", "3" ,"1","37" },
+	                  { "kim", "1", "김수로",  "1990-06-05", "M", "2" ,"3","83" },
+	                  { "jo", "1", "조세호",  "1991-06-05", "M", "2" ,"2","72" },
+	                  { "yang", "1", "양세찬",  "1999-06-04", "M", "3" ,"2","95"}
+	                  };
 		for(String[] arr: mtx) {
 				person = new Person();
 				person.setUserid(arr[0]);
 				person.setPasswd(arr[1]);
 				person.setName(arr[2]);
 				person.setBirthday(df.parse(arr[3]));
+				person.setGender(arr[4]);
+				person.setHak((arr[5]));
+				person.setBan((arr[6]));
+				person.setScore(arr[7]);
 				personRepositoy.save(person);
 				
 			}	
 		}
 		
 	}
+	
 
 }

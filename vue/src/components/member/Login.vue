@@ -1,18 +1,19 @@
 <template>
 <div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form>
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
+
             <input v-model="userid" type="text" class="form-control" placeholder="Username" required="required">
         </div>
         <div class="form-group">
             <input v-model="passwd" type="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button @click="login" type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button @click.prevent="login" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <label class="pull-left checkbox-inline"><input type="checkbox">Remember me</label>
             <a href="#" class="pull-right">Forgot Password?</a>
         </div>        
     </form>
@@ -21,18 +22,21 @@
 </template>
 <script>
 import axios from "axios"
+import { store } from "../../store"
 export default {
 	data(){
         return {
             context: 'http://localhost:8080/',
             result: '',
             userid : '',
-            passwd : ''
-            
+            passwd : '',
+            person : {}
         }
     },
     methods: {
+        
         login(){
+            
             let url = `${this.context}/login`
             let data = {
                 userid: this.userid,
@@ -44,20 +48,29 @@ export default {
                 'Content-Type': 'application/json'
                 
             }
+         
             axios
             .post(url, data, headers)
             .then(res=>{
-                this.result = res.data
-                alert(`로그인성공${this.result.userid}`)
-               
+                if(res.data.result === "SUCCESS"){
+                    store.state.person = res.data.person
+                    alert(`스토어에 저장성공${store.state.person.name}`)
+                    store.state.authCheck = true
+                    this.$router.push({path: '/mypage'})
+                  
+                }else{
+                    alert(`로그인실패`)
+                    this.$router.push({path: '/login'})
+                }
+                
             })
             .catch(()=>{
                 alert('axios실패')
             })
+            
         }
     }
 }
-
 </script>
 <style scoped>
 .text-center{

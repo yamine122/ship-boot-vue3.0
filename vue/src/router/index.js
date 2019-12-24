@@ -7,6 +7,8 @@ import Remove from '@/components/board/Remove.vue'
 import Search from '@/components/board/Search.vue'
 import Join from '@/components/member/Join.vue'
 import Login from '@/components/member/Login.vue'
+import MyPage from '@/components/member/MyPage.vue'
+import MypageUpdate from '@/components/member/MypageUpdate.vue'
 Vue.use(Router)
 export default new Router({
 	mode : 'history',
@@ -17,6 +19,8 @@ export default new Router({
 		{path: '/listview', name: 'listview', component: ListView},
 		{path: '/update', name: 'update', component: Update},
 		{path: '/remove', name: 'remove', component: Remove},
-		{path: '/search', name: 'search', component: Search}
+		{path: '/search', name: 'search', component: Search},
+		{path: '/mypage', name: 'mypage', component: MyPage},
+		{path: '/mypageupdate', name: 'mypageupdate', component: MypageUpdate}
 	]
 })
