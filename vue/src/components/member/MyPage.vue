@@ -4,17 +4,17 @@
       <td>
         <legend><h3>비밀번호</h3></legend>
       <h3>{{person.passwd}}</h3>
-      <button>수정</button><br/><br/>
+      <button @click.prevent="goUpdate">수정</button><br/><br/>
       </td>
     </tr>
     <tr>
-      <td><legend><h3>학생부 관리</h3></legend>
+      <td><legend><h3>성적확인</h3></legend>
       <h3>{{person.hak}}학년</h3> 
       <h3>{{person.ban}} 반</h3>
       <h3>{{person.score}}점</h3>
       </td>
       <br/><br/>
-      <button @click.prevent="goUpdate">수정</button>
+   
     </tr>
   </table>
 </template>
@@ -27,18 +27,14 @@ export default{
       name: store.state.name,
       person : store.state.person,
       sidebars: [
-				{menu:"학생등록",link:"/write"},
-				{menu:"학생목록",link:"/list"},
-				{menu:"학생정보수정",link:"/update"},
-				{menu:"학생정보삭제",link:"/remove"},
-				{menu:"학생검색",link:"/search"}
+				{menu:"비밀번호수정",link:"/update"}
       ],
       authCheck : true
     }
   },
   methods :{
       goUpdate(){
-          this.$router.push({path: '/mypageupdate'})
+          this.$router.push({path: '/myPageUpdate'})
           
       }
     }

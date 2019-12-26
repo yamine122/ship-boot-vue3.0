@@ -56,7 +56,17 @@ export default {
                     store.state.person = res.data.person
                     alert(`스토어에 저장성공${store.state.person.name}`)
                     store.state.authCheck = true
-                    this.$router.push({path: '/mypage'})
+                    if(store.state.person.role !== "student"){
+                        store.state.sidebar = "managerSidebar"
+                        store.state.headerMessage = "관리자 화면"
+                        this.$router.push({path: '/studentList'})
+                    }else{
+                        store.state.sidebar = "studentSidebar"
+                        this.$router.push({path: '/mypage'})
+                        store.state.headerMessage = "학생화면"
+                    }
+                   
+                    
                   
                 }else{
                     alert(`로그인실패`)
@@ -69,7 +79,17 @@ export default {
             })
             
         }
-    }
+    },
+    computed:{
+		loginCheck: function(){
+			return store.state.authCheck
+		},
+		sidebar: function(){
+			return store.state.sidebar
+		}
+		
+	}
+
 }
 </script>
 <style scoped>

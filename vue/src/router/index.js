@@ -1,26 +1,44 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Write from '@/components/board/Write.vue'
-import ListView from '@/components/board/ListView.vue'
-import Update from '@/components/board/Update.vue'
-import Remove from '@/components/board/Remove.vue'
-import Search from '@/components/board/Search.vue'
-import Join from '@/components/member/Join.vue'
-import Login from '@/components/member/Login.vue'
-import MyPage from '@/components/member/MyPage.vue'
-import MypageUpdate from '@/components/member/MypageUpdate.vue'
+import ArticleAdd from '@/components/board/ArticleAdd'
+import ArticleEdit from '@/components/board/ArticleEdit'
+import ArticleFindOne from '@/components/board/ArticleFindOne'
+import ArticlesFindSome from '@/components/board/ArticlesFindSome'
+import ArticleRemoval from '@/components/board/ArticleRemoval'
+import Articles from '@/components/board/Articles'
+import StudentAdd from '@/components/student/StudentAdd'
+import StudentEdit from '@/components/student/StudentEdit'
+import StudentFindOne from '@/components/student/StudentFindOne'
+import StudentsFindSome from '@/components/student/StudentsFindSome'
+import StudentRemoval from '@/components/student/StudentRemoval'
+import Students from '@/components/student/Students'
+import Join from '@/components/member/Join'
+import Login from '@/components/member/Login'
+import MyPage from '@/components/member/MyPage'
+import MyPageUpdate from '@/components/member/MyPageUpdate'
+import Admin from '@/components/member/Admin'
+
 Vue.use(Router)
+
 export default new Router({
-	mode : 'history',
+	mode: 'history',
 	routes : [
-		{path: '/join', name: 'join', component: Join},
-		{path: '/login', name: 'login', component: Login},
-		{path: '/write', name: 'write', component: Write},
-		{path: '/listview', name: 'listview', component: ListView},
-		{path: '/update', name: 'update', component: Update},
-		{path: '/remove', name: 'remove', component: Remove},
-		{path: '/search', name: 'search', component: Search},
-		{path: '/mypage', name: 'mypage', component: MyPage},
-		{path: '/mypageupdate', name: 'mypageupdate', component: MypageUpdate}
+		{path: '/articleAdd',name: 'articleAdd', component: ArticleAdd},
+		{path: '/articleEdit',name: 'articleEdit', component: ArticleEdit},
+		{path: '/articleRemoval',name: 'articleRemoval', component: ArticleRemoval},
+		{path: '/articleFindOne',name: 'articleFindOne', component: ArticleFindOne},
+		{path: '/articles',name: 'articles', component: Articles},
+		{path: '/articlesFindSome',name: 'articlesFindSome', component: ArticlesFindSome},
+		{path: '/studentAdd',name: 'studentAdd', component: StudentAdd},
+		{path: '/studentEdit',name: 'studentEdit', component: StudentEdit},
+		{path: '/studentFindOne',name: 'studentFindOne', component: StudentFindOne},
+		{path: '/studentRemoval',name: 'studentRemoval', component: StudentRemoval},
+		{path: '/students',name: 'students', component: Students},
+		{path: '/studentsFindSome',name: 'studentsFindSome', component: StudentsFindSome},
+		{path: '/join',name: 'join', component: Join},
+		{path: '/login',name: 'login', component: Login},
+		{path: '/myPage',name: 'myPage', component: MyPage},
+		{path: '/myPageUpdate',name: 'myPageUpdate', component: MyPageUpdate},
+		{path: '/admin',name: 'admin', component: Admin}
 	]
 })

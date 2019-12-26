@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,12 @@ import lombok.Data;
 @Component
 @Data
 @Entity
-@Table(name="PERSON")
+@Table(name="PERSON",
+		uniqueConstraints={
+		@UniqueConstraint(
+			columnNames={"USERID"}
+			)
+})
 public class Person {
 	@Id
 	@GeneratedValue
@@ -34,11 +40,13 @@ public class Person {
 	@Column(name="GENDER")
 	private String gender;
 	@Column(name="HAK")
-	private String hak;
+	private int hak;
 	@Column(name="BAN")
-	private String ban;
+	private int ban;
 	@Column(name="SCORE")
-	private String score;
+	private int score;
+	@Column(name="ROLE")
+	private String role;
 
 	
 	

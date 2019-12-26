@@ -3,7 +3,7 @@
     <tr>
       <td>
         <legend><h3>비밀번호 변경</h3></legend>
-      <input type="text" name="pwd" size="20" placeholder="기존 비밀번호 입력" v-model="person.passwd"  style="float: none; width: 70%;">
+      <input type="text" name="pwd" size="20" placeholder="기존 비밀번호 입력" v-model="person.pwd"  style="float: none; width: 70%;">
       <button>수정</button><br/><br/>
       </td>
     </tr>
@@ -18,7 +18,6 @@
   </table>
 </template>
 <script>
-
 import {store} from "../../store"
 export default{
 	data(){
