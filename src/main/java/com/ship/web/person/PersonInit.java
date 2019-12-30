@@ -53,7 +53,7 @@ public class PersonInit extends Proxy implements ApplicationRunner {
 				person.setPasswd(arr[1]);
 				person.setName(arr[2]);
 				person.setBirthday(df.parse(arr[3]));
-				person.setGender(arr[4]);
+				person.setMale(Boolean.parseBoolean(arr[4]));
 				person.setHak(integer(arr[5]));
 				person.setBan(integer(arr[6]));
 				person.setScore(integer(arr[7]));

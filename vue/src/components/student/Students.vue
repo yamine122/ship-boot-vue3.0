@@ -1,8 +1,7 @@
 <template>
 <div>
 학생들목록
-<table class="table">
-	<tr>
+<table class="table"><tr>
 	
 	<th>NO</th>
 	<th>아이디</th>
@@ -31,6 +30,15 @@
 	
 	</tr>
 </table>
+	<div class="btn-cover">
+		<button :disable="pageNum === 0" @click="prevPage" class="page-btn">
+		이전
+		</button>
+		<span class="page-count">{{pageNum + 1}}</span>
+		<button :disable="pageNum >= pageCount - 1 " @click="nextPage" class="page-btn">
+		다음
+		</button>
+	</div>
 </div>
 </template>
 <script>
@@ -39,7 +47,9 @@ export default{
 	data(){
 		return {
 			context: 'http://localhost:8080/',
-			list : []
+			list : [],
+			pageNum : 0,
+			pageCount : 5
 		}
 	},
 	created(){
@@ -59,4 +69,19 @@ export default{
 .table tr{	border:1px solid black;}
 .table tr th{	border:1px solid black;}
 .table tr td{	border:1px solid black;}
+.btn-cover {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.btn-cover .page-btn {
+  width: 5rem;
+  height: 2rem;
+  letter-spacing: 0.5px;
+}
+.btn-cover .page-count {
+  padding: 0 1rem;
+  border: 1px solid black;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 </style>
