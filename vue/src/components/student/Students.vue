@@ -42,25 +42,18 @@
 </div>
 </template>
 <script>
-import axios from "axios"
+
 export default{
 	data(){
 		return {
-			context: 'http://localhost:8080/',
+
 			list : [],
 			pageNum : 0,
 			pageCount : 5
 		}
 	},
 	created(){
-		axios
-		.get(`${this.context}/students`)
-		.then(res=>{
-			this.list = res.data
-		})
-		.catch(()=>{
-			alert('axios fail')
-		})
+	
 	}
 }
 </script>

@@ -56,45 +56,17 @@
 </div>
 </template>
 <script>
-import axios from "axios"
+
 export default{
 	data(){
 		return {
-			context: 'http://localhost:8080/',
+
 			list : []
 		}
 	},
 	methods : {
-		find(){
-			axios
-			.get(`${this.context}/students`)
-			.then(res =>{
-				this.list = res.data
-			})
-			.catch(e=>{
-				alert('AXIOS FAIL'+e)
-			})
-		},
-		findSearchWord(){
-			axios
-			.get(`${this.context}/students/search/hak`)
-			.then(res =>{
-				this.list = res.data
-			})
-			.catch(e=>{
-				alert('AXIOS FAIL'+e)
-			})
-		},
-		partioningBy(){
-			axios
-			.get(`${this.context}/students/search/${this.searchWord}`)
-			.then(res =>{
-				this.list = res.data
-			})
-			.catch(e=>{
-				alert('AXIOS FAIL'+e)
-			})
-		}
+		
+		
 	}
 	
 }

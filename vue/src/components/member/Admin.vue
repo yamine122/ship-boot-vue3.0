@@ -19,13 +19,12 @@
   </table>
 </template>
 <script>
-import {store} from "../../store"
+
 export default{
 	data(){
 		return {
-      context : 'http://localhost:8080/',
-      name: store.state.name,
-      person : store.state.person,
+
+
       sidebars: [
 						{menu:"학생등록",link:"/studentAdd"},
 						{menu:"학생목록",link:"/students"},

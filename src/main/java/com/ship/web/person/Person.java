@@ -74,8 +74,7 @@ public class Person extends Proxy implements Serializable{
 
 	@OneToMany(mappedBy = "personid",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> articles = new ArrayList<>();
-	
-	
+
 	@Builder
 	private Person( String userid,  String passwd,  String name,  Date birthday,
 			 boolean male,  int hak,  int ban,  int score,  String role) {

@@ -16,7 +16,7 @@
 </div>
 </template>
 <script>
-import {store} from "../../store";
+
 export default {
 	name : 'layout',
 	data(){
@@ -26,9 +26,7 @@ export default {
 		}
      },
      computed : {
-          changeMessage : function(){
-               return store.state.headerMessage
-          }
+          
      }
 }
 </script>

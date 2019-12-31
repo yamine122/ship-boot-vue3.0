@@ -10,10 +10,7 @@ import {store} from "../../store"
 export default{
     methods : {
         logout(){
-            store.state.person = {},
-            store.state.authCheck = false,
-            store.state.sidebar = 'preSidebar',
-            this.$router.push({path: '/login'})
+            
         },
         withdrawal(){
             axios
