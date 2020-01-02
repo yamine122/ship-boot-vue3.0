@@ -1,6 +1,6 @@
 <template>
 <div class="login-form">
-    <form>
+    <form method="post" @submit.prevent="onSubmit(userid, passwd)">
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
 
@@ -10,7 +10,7 @@
             <input v-model="passwd" type="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button @click.prevent="login" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
             <label class="pull-left checkbox-inline"><input type="checkbox">Remember me</label>
@@ -21,32 +21,29 @@
 </div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+/* import {mapActions} from 'vuex' */
 export default {
+    name: 'login',
 	data(){
         return {
-            userid : '',
-            passwd : ''
+           ctx : this.$store.state.common.context,
+           msg: ''
 
         }
     },
-    methods: {
-    ...mapMutations([
-      'increment' // this.increment()를 this.$store.commit('increment')에 매핑합니다.
-    ]),
-    ...mapMutations({
-      add: 'increment' // this.add()를 this.$store.commit('increment')에 매핑합니다.
-    }),
-    },   
-    computed:{
-		loginCheck: function(){
-			return this.$store.state.authCheck
-		},
-		sidebar: function(){
-			return this.$store.state.sidebars
-		}
-		
-	}
+    methods : {
+        onSubmit(uid, pwd){
+            this.$store.dispatch('admin/login', {userid:uid, passwd:pwd, context: this.ctx})
+            .then(()=>this.redirect())
+            .catch(({message})=>this.msg = message)
+            
+        },
+        /* ...mapActions('admin/login') */
+        redirect(){
+            this.$router.push(`/admin`)
+        }
+        
+    }
 
 }
 </script>

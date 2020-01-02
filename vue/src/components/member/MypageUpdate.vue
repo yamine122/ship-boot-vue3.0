@@ -20,6 +20,7 @@
 <script>
 import {store} from "../../store"
 export default{
+  name: 'myPageUpdate',
 	data(){
 		return {
       name: store.state.name,

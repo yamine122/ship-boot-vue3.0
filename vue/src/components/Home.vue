@@ -1,42 +1,23 @@
 <template>
-<div id="app">
+	<div id="app">
 		<layout>
 			<template #header="header">
-				<h1>{{header.title}}
+				<h1>{{header.title}}</h1>
 				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
-				</h1>
 			</template>
 			<template #sidebar="sidebar">
-				<div v-switch="sidebarType">
-					<div v-case="'preSidebar'">
-						<component :is="'pre-sidebar'"></component>
-					</div>
-					<div v-case="'managerSidebar'">
-						<component :is="'manager-sidebar'"></component>
-					</div>
-					
-					<div v-case="'studentSidebar'">
-						<component :is="'student-sidebar'"></component>
-					</div>
-				</div>
-			</template>
-			<!-- <template #sidebar="sidebar">
-				<ul class="menu">
-					<li v-for="i of sidebars" :key="i.menu">
-					<router-link :to="i.link">{{i.menu}}</router-link>
+				<!-- <component :is="sidebarCheck"></component> -->
+				<ul v-if="loginCheck" class="menu" >
+					<li v-for="sidebar of sidebarCheck" :key="sidebar.menu">
+						<router-link :to='sidebar.link'>{{sidebar.menu}}</router-link>
 					</li>
 				</ul>
-			</template> -->
-			<template #content="content">
-			
-			<router-view/>
+					
 			</template>
-			
-			<template #footer="footer">{{footer.title}}
-			
-			</template>
+			<template #content="content"><router-view/></template>
+			<template #footer="footer">{{footer.title}}</template>
 		</layout>
-</div>
+	</div>
 </template>
 <script>
 import Layout from "@/components/cmm/Layout.vue"
@@ -45,24 +26,20 @@ import PreAuth from "@/components/cmm/PreAuth.vue"
 import ManagerSidebar from "@/components/cmm/ManagerSidebar.vue"
 import PreSidebar from "@/components/cmm/PreSidebar.vue"
 import StudentSidebar from "@/components/cmm/StudentSidebar.vue"
-import {store} from "@/store"
-export default {
-	components :{
-		Layout,PostAuth,PreAuth,ManagerSidebar, PreSidebar, StudentSidebar
-	},
-	data(){
-		return {
-			
-			
-		}
+ 
+export default{
+	components : {Layout, PreAuth, PostAuth,
+	ManagerSidebar, PreSidebar, StudentSidebar
 	},
 	computed:{
+		
 		loginCheck: function(){
-			return store.state.authCheck
+			return this.$store.state.admin.isAuth
 		},
-		sidebarType: function(){
-			return store.state.sidebar
+		sidebarCheck: function(){
+			return this.$store.state.admin.sidebars
 		}
+		
 	}
 }
 </script>

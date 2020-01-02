@@ -87,7 +87,11 @@
     </div>
 </div>
 </template>
-
+<script>
+export default {
+    name: 'join'
+}
+</script>
 <style scoped>
 .topfont{
 	font-size:x-large; color:gray;

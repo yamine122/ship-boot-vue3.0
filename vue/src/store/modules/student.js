@@ -1,18 +1,24 @@
 import Constant from '@/store/modules/mutation_types'
 import axios from 'axios'
+import api from '@/api'
+import router from '@/router'
 const state = {
 	person: {},
     sidebars : [
                 {menu:"내정보",link:"/student/mypage"},
                 {menu:"비번변경",link:"/student/update/passwd"}
-			]
+            ],
+            userid : ''
 }
 const getters = {
 	getPerson: state => state.person
 }
 const actions = {
-	async login(){
+	async login({commit, state}){
             alert(`${this.userid} ,  ${this.passwd}`)
+            api.login(state.userid, state.passwd)
+            .then(data => commit('login', data.data))
+            .then(()=>{router.push({name: 'home'})})
             let url = `${ this.$store.state.context}/login`
             let data = {
                 userid: this.userid,
@@ -88,6 +94,7 @@ const mutations = {
     },
 }
 export default {
+    name: 'student',
 	namespaced : true,
 	state,
 	getters,

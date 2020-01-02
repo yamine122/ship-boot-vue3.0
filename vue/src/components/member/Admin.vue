@@ -1,46 +1,32 @@
-<template>
-  <table>
-    <tr>
-      <td>
-        <legend><h3>비밀번호 </h3></legend>
-      <h5>{{person.passwd}}</h5>
-      <button>수정</button><br/><br/>
-      </td>
-    </tr>
-    <tr>
-      <td><legend><h3>학생부 관리</h3></legend>
-      <h5>{{person.hak}} 학년</h5>
-      <h5>{{person.ban}} 반</h5>
-      <h5>{{person.score}}점</h5>
-      <br/><br/>
-      <button @click.prevent="goUpdate">수정</button>
-      </td>
-    </tr>
-  </table>
-</template>
+<template #content="content"><students></students></template>
 <script>
-
+import Students from "@/components/student/Students.vue"
+import {store} from "../../store"
 export default{
+	name: 'admin',
+	components: {
+		Students
+	},
 	data(){
 		return {
-
-
-      sidebars: [
+			context : 'http://localhost:8080/',
+			name: store.state.name,
+			person : store.state.person,
+			sidebars: [
 						{menu:"학생등록",link:"/studentAdd"},
 						{menu:"학생목록",link:"/students"},
 						{menu:"학생정보수정",link:"/studentEdit"},
 						{menu:"학생정보삭제",link:"/studentRemoval"},
-            {menu:"학생검색",link:"/studentFindOne"}
-            ],
-      authCheck : true
+						{menu:"학생검색",link:"/studentFindOne"}],
+			authCheck : true
 		}
 		
-	},
-  methods  : {
-    goUpdate(){
-      this.$router.push({path: '/myPageUpdate'})
-    }
-  }
+	}
+     /*created(){
+          
+        this.$emit(changeSidebars,'test')
+          
+     }*/
 }
 </script>
 <style scoped>

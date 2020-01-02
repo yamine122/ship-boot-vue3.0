@@ -21,6 +21,7 @@
 <script>
 import {store} from "../../store"
 export default{
+  name: 'mypage',
 	data(){
 		return {
       name: store.state.name,
